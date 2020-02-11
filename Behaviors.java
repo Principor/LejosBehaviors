@@ -27,8 +27,11 @@ public class Behaviors {
 		
 		Trundle trundle = new Trundle(pilot);
 		BackUp backup = new BackUp(pilot);
+		LowBattery lowBattery = new LowBattery(pilot);
+		Light light = new Light(pilot);
+		dark d = new dark(pilot);
 		
-		Arbitrator ab = new Arbitrator (new Behavior[]{trundle, backup});
+		Arbitrator ab = new Arbitrator (new Behavior[]{trundle, backup, light, d, lowBattery});
 		ab.go();
 	}
 	
