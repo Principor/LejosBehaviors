@@ -1,0 +1,30 @@
+import lejos.hardware.Button;
+import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.EV3TouchSensor;
+import lejos.robotics.SampleProvider;
+import lejos.robotics.navigation.MovePilot;
+import lejos.robotics.subsumption.Behavior;
+
+public class Emergency implements Behavior {
+	private EV3TouchSensor ts = new EV3TouchSensor(SensorPort.S1);
+	private MovePilot pilot;
+	private SampleProvider sp = ts.getTouchMode(); //method detects if button is pressed
+	private float[] sample = new float[1]; 
+	@Override
+	public boolean takeControl() {
+		sp.fetchSample(sample, 1);
+		return Button.ESCAPE.isDown() || sample[0] == 1;
+	}
+
+	@Override
+	public void action() {
+		pilot.stop();
+	}
+
+	@Override
+	public void suppress() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
