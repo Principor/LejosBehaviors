@@ -5,8 +5,10 @@ import lejos.robotics.chassis.Chassis;
 import lejos.robotics.chassis.Wheel;
 import lejos.robotics.chassis.WheeledChassis;
 import lejos.robotics.navigation.MovePilot;
+import lejos.robotics.subsumption.Arbitrator;
+import lejos.robotics.subsumption.Behavior;
 
-public class Behavior {
+public class Behaviors {
 
 	final static float WHEEL_DIAMETER = 56;
 	final static float AXLE_LENGTH = 190;
@@ -23,7 +25,10 @@ public class Behavior {
 		
 		MovePilot pilot = new MovePilot(chassis);
 		
+		Behavior[] behaviours = new Behavior[0];
 		
+		Arbitrator ab = new Arbitrator (behaviours);
+		ab.go();
 	}
 	
 }
