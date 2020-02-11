@@ -25,9 +25,9 @@ public class Behaviors {
 		
 		MovePilot pilot = new MovePilot(chassis);
 		
-		Behavior[] behaviours = new Behavior[0];
+		Trundle trundle = new Trundle(pilot);
 		
-		Arbitrator ab = new Arbitrator (behaviours);
+		Arbitrator ab = new Arbitrator (new Behavior[]{trundle});
 		ab.go();
 	}
 	
