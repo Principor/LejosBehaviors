@@ -24,11 +24,8 @@ public class Light implements Behavior {
 	public boolean takeControl() {
 		// TODO Auto-generated method stub
 		color.fetchSample(level,0);
-		if (pilot.getLinearSpeed() < 70 || level[0] >0.5 ) {
-		
-		return true;}
-		
-		return false;
+		return (pilot.getLinearSpeed() < 70 && level[0] >0.5 );
+
 	}
 
 	@Override
