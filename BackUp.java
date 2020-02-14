@@ -1,7 +1,5 @@
 import java.util.Random;
 
-import lejos.hardware.port.SensorPort;
-import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.robotics.SampleProvider;
 import lejos.robotics.navigation.MovePilot;
 import lejos.robotics.subsumption.Behavior;
@@ -9,13 +7,13 @@ import lejos.robotics.subsumption.Behavior;
 public class BackUp implements Behavior{
 	
 	private MovePilot turner;
-	private EV3UltrasonicSensor us = new EV3UltrasonicSensor(SensorPort.S1);
-	private SampleProvider sp = (SampleProvider) us.getDistanceMode();
 	private Random rgen = new Random();
 	private float[] samples = new float[1];
+	SampleProvider sp;
 	
-	BackUp(MovePilot p) {
+	BackUp(MovePilot p, SampleProvider distance) {
 		turner = p;
+		sp = distance;
 	}
 	
 	public void action() {

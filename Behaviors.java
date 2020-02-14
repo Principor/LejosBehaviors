@@ -1,6 +1,12 @@
 import lejos.hardware.motor.BaseRegulatedMotor;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
+import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.EV3TouchSensor;
+import lejos.hardware.sensor.EV3UltrasonicSensor;
+import lejos.hardware.sensor.NXTColorSensor;
+import lejos.hardware.sensor.SensorMode;
+import lejos.robotics.SampleProvider;
 import lejos.robotics.chassis.Chassis;
 import lejos.robotics.chassis.Wheel;
 import lejos.robotics.chassis.WheeledChassis;
@@ -26,14 +32,28 @@ public class Behaviors {
 		
 		MovePilot pilot = new MovePilot(chassis);
 		
-		Trundle trundle = new Trundle(pilot);
-		BackUp backup = new BackUp(pilot);
-		LowBattery lowBattery = new LowBattery(pilot);
-		Light light = new Light(pilot);
-		dark d = new dark(pilot);
+		EV3UltrasonicSensor us = new EV3UltrasonicSensor(SensorPort.S1);
+		SampleProvider distance = (SampleProvider) us.getDistanceMode();
+
+		EV3TouchSensor ts = new EV3TouchSensor(SensorPort.S1);
+		SampleProvider touched = ts.getTouchMode();
 		
-		Arbitrator ab = new Arbitrator (new Behavior[]{trundle, backup, light, d, lowBattery});
+		NXTColorSensor cs = new NXTColorSensor(SensorPort.S1);
+		SensorMode color = cs.getAmbientMode(); 
+		
+		Trundle trundle = new Trundle(pilot);
+		BackUp backup = new BackUp(pilot, distance);
+		LowBattery lowBattery = new LowBattery(pilot);
+		Light light = new Light(pilot, color);
+		dark d = new dark(pilot, color);
+		Emergency emergency = new Emergency(pilot, touched);
+		
+		Arbitrator ab = new Arbitrator (new Behavior[]{trundle, backup, light, d, emergency, lowBattery});
 		ab.go();
+		
+		us.close();
+		ts.close();
+		cs.close();
 	}
 	
 }
