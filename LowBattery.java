@@ -17,7 +17,7 @@ public class LowBattery implements Behavior{
 
 		return Battery.getVoltage() < 1;
 	}
-
+	
 	public void action() {
 		pilot.stop();
 		LCD.clear();

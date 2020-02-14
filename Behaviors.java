@@ -32,13 +32,13 @@ public class Behaviors {
 		
 		MovePilot pilot = new MovePilot(chassis);
 		
-		EV3UltrasonicSensor us = new EV3UltrasonicSensor(SensorPort.S1);
+		EV3UltrasonicSensor us = new EV3UltrasonicSensor(SensorPort.S2);
 		SampleProvider distance = (SampleProvider) us.getDistanceMode();
 
-		EV3TouchSensor ts = new EV3TouchSensor(SensorPort.S1);
+		EV3TouchSensor ts = new EV3TouchSensor(SensorPort.S3);
 		SampleProvider touched = ts.getTouchMode();
 		
-		NXTColorSensor cs = new NXTColorSensor(SensorPort.S1);
+		NXTColorSensor cs = new NXTColorSensor(SensorPort.S3);
 		SensorMode color = cs.getAmbientMode(); 
 		
 		Trundle trundle = new Trundle(pilot);
@@ -48,7 +48,7 @@ public class Behaviors {
 		dark d = new dark(pilot, color);
 		Emergency emergency = new Emergency(pilot, touched);
 		
-		Arbitrator ab = new Arbitrator (new Behavior[]{trundle, backup, light, d, emergency, lowBattery});
+		Arbitrator ab = new Arbitrator (new Behavior[]{trundle, backup, lowBattery, light, d, emergency});
 		ab.go();
 		
 		us.close();

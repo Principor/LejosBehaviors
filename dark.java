@@ -1,3 +1,4 @@
+import lejos.hardware.lcd.LCD;
 import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.navigation.MovePilot;
 import lejos.robotics.subsumption.Behavior;
@@ -28,7 +29,8 @@ public class dark implements Behavior {
 	}
 	@Override
 	public void action() {
-		
+		LCD.clear();
+		LCD.drawString("Dark", 0, 0);
 		pilot.setLinearSpeed(Behaviors.SLOW_SPEED);
 		
 	}

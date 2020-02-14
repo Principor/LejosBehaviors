@@ -1,3 +1,4 @@
+import lejos.hardware.lcd.LCD;
 import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.navigation.MovePilot;
 import lejos.robotics.subsumption.Behavior;
@@ -18,12 +19,13 @@ public class Light implements Behavior {
 		// TODO Auto-generated method stub
 		color.fetchSample(level,0);
 		return (pilot.getLinearSpeed() < 70 && level[0] >0.5 );
-
+		
 	}
 
 	@Override
 	public void action() {
 		// TODO Auto-generated method stub
+		LCD.drawString("light", 0, 0);
 		pilot.setLinearSpeed(Behaviors.FAST_SPEED);
 		
 	}

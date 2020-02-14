@@ -1,5 +1,6 @@
 import java.util.Random;
 
+import lejos.hardware.lcd.LCD;
 import lejos.robotics.SampleProvider;
 import lejos.robotics.navigation.MovePilot;
 import lejos.robotics.subsumption.Behavior;
@@ -17,6 +18,8 @@ public class BackUp implements Behavior{
 	}
 	
 	public void action() {
+		LCD.clear();
+		LCD.drawString("back up", 0, 0);
 		turner.travel(-50);
 		turner.rotate((2 * rgen.nextInt(2) - 10) * 30);
 	}
@@ -26,7 +29,7 @@ public class BackUp implements Behavior{
 	
 	public boolean takeControl() {
 		sp.fetchSample(samples, 0);
-		return (samples[0] < 0.2f);
+		return (samples[0] < 0.5f);
 	}
 	
 	
