@@ -1,12 +1,6 @@
-package dark;
-
-import lejos.hardware.motor.Motor;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.NXTColorSensor;
 import lejos.hardware.sensor.SensorMode;
-import lejos.robotics.chassis.Chassis;
-import lejos.robotics.chassis.Wheel;
-import lejos.robotics.chassis.WheeledChassis;
 import lejos.robotics.navigation.MovePilot;
 import lejos.robotics.subsumption.Behavior;
 
@@ -38,7 +32,7 @@ public class dark implements Behavior {
 	@Override
 	public void action() {
 		
-		pilot.setLinearSpeed(70);
+		pilot.setLinearSpeed(Behaviors.SLOW_SPEED);
 		
 	}
 	@Override

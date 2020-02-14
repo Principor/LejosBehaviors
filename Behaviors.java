@@ -13,7 +13,8 @@ public class Behaviors {
 	final static float WHEEL_DIAMETER = 56;
 	final static float AXLE_LENGTH = 190;
 	final static float ANGULAR_SPEED = 100;
-	final static float LINEAR_SPEED = 70;
+	final static float FAST_SPEED = 70;
+	final static float SLOW_SPEED = FAST_SPEED / 2;
 	
 	public static void main(String[] args) {
 		BaseRegulatedMotor mLeft = new EV3LargeRegulatedMotor(MotorPort.A);

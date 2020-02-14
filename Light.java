@@ -31,7 +31,7 @@ public class Light implements Behavior {
 	@Override
 	public void action() {
 		// TODO Auto-generated method stub
-		pilot.setLinearSpeed(70);
+		pilot.setLinearSpeed(Behaviors.FAST_SPEED);
 		
 	}
 
